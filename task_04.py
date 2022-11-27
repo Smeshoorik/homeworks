@@ -7,7 +7,7 @@
 # import random 
 
 import random 
-
+from datetime import time, timedelta
 my_favorite_songs = [
     ['Waste a Moment', 3.03],
     ['New Salvation', 4.02],
@@ -20,11 +20,24 @@ my_favorite_songs = [
     ['In This World', 4.02],
 ]
 
-num_songs = 3
+#сделала максимально универсальное решение, чтобы можно было составить случайный плэйлист из разного количества песен
+num_songs = 3 
 playlist=[0]*num_songs
 items_num = 0
-for i in range(0,num_songs):
-    playlist[i] = random.choice (my_favorite_songs)
+
+# добавила условие отсутствия повторов одной и той же песни в плейлисте
+while True:
+    playlist_queue = random.choice (my_favorite_songs)
+    song_exist = False
+    for i in playlist:
+        if playlist_queue == i:
+            song_exist = True
+            break
+    if not song_exist:
+        items_num += 1
+        playlist[items_num-1]=playlist_queue
+    if items_num == num_songs:
+        break
 
 common_min=0
 common_sec=0
@@ -44,21 +57,5 @@ common_sec=str(common_sec)
 if len (common_sec) < 2:
     common_sec = '0'+ str(common_sec)
 common_min += minplus
-print (playlist)
-print ('3 песни звучат', common_min,'.',common_sec)
-
--------
-# пока не успела отладить код, чтобы сделать плейлист без повторений. Код примерно такой, но где-то я с индексами напутала. Вставить предполагалось в 28 строку
-# while True:
-#     playlist_queue = random.choice (my_favorite_songs)
-#     song_exist = False
-#     for i in playlist:
-#         if playlist_queue == i:
-#             song_exist = True
-#             break
-#     if not song_exist:
-#         items_num += 1
-#         playlist[items_num]=playlist_queue
-#     if items_num == num_songs:
-#         break
-
+print (playlist) # печать плейлиста, чтобы увидеть созданный плейлист и проверить, правильно ли складываются длительности
+print (f"{common_min}.{common_sec}")
