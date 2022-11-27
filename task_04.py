@@ -7,7 +7,7 @@
 # import random 
 
 import random 
-from datetime import time, timedelta
+
 my_favorite_songs = [
     ['Waste a Moment', 3.03],
     ['New Salvation', 4.02],
@@ -45,7 +45,7 @@ if len (common_sec) < 2:
     common_sec = '0'+ str(common_sec)
 common_min += minplus
 print (playlist)
-print (common_min,'.',common_sec)
+print ('3 песни звучат', common_min,'.',common_sec)
 
 -------
 # пока не успела отладить код, чтобы сделать плейлист без повторений. Код примерно такой, но где-то я с индексами напутала. Вставить предполагалось в 28 строку
